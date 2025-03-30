@@ -9,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,13 +43,12 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveManeExceptionTest()  {
-        try{
-            Lion lion = new Lion("Не самец", feline);
-        } catch (Exception exception){
-            String expectedException = "Используйте допустимые значения пола животного - самец или самка";
-            assertEquals(expectedException, exception.getMessage());
-        }
-    }
+    public void doesHaveManeExceptionTest() {
+        Exception exception = assertThrows(Exception.class, () -> {
+            new Lion("Не самец", feline);
+        });
 
+        String expectedException = "Используйте допустимые значения пола животного - самец или самка";
+        assertEquals(expectedException, exception.getMessage());
+    }
 }

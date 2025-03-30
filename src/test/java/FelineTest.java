@@ -37,7 +37,6 @@ public class FelineTest {
     public void getKittensCountTest()  {
         int kittensCount = 5;
         int actualKittensCount = feline.getKittens(kittensCount);
-        Mockito.verify(feline).getKittens(Mockito.anyInt());
         assertEquals("Ожидаемое количество не соответствует фактическому" , kittensCount, actualKittensCount);
     }
 
